@@ -2,6 +2,13 @@
   become: yes
   gather_facts: false
   tasks:
+    - name: Set up the stable repository
+      remote_user: ubuntu
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+        update_cache: yes
+
     - name: Install docker
       remote_user: ubuntu
       apt:
